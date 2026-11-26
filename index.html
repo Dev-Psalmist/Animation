@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>Try the Look — Runway</title>
+  <meta name="description" content="Six looks, styled head to toe. Explore the runway, isolate a look, and tap a pin to see the piece.">
+  <link rel="preload" as="image" href="https://reel-ref-try-the-look.vercel.app/assets/model-1-640.webp" fetchpriority="high">
+  <link rel="stylesheet" href="./styles.css">
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <header class="site-header shopify-section-group-header-group">
+    <a href="./" class="brand" aria-label="Runway home"><img src="https://reel-ref-try-the-look.vercel.app/assets/nike-logo.svg" width="68" height="24" alt="Nike"></a>
+    <nav aria-label="Main navigation">
+      <a href="./">Home</a>
+      <a href="https://nike-makknzjs.myshopify.com/pages/nike-orbit" target="_blank" rel="noopener noreferrer">Nike Orbit</a>
+      <a href="https://nike-makknzjs.myshopify.com/pages/scene-rail" target="_blank" rel="noopener noreferrer">Hand Rail Pro</a>
+      <a href="./" aria-current="page">Runway</a>
+    </nav>
+    <button id="open-bag" class="bag-trigger" aria-label="Open styling bag">
+      <svg viewBox="0 0 24 26" width="22" height="24" aria-hidden="true"><path d="M4 8h16l1 16H3L4 8zM8 8V6a4 4 0 0 1 8 0v2" fill="none" stroke="currentColor" stroke-width="1.3"/></svg>
+      <span data-cart-count>0</span>
+    </button>
+  </header>
+  <main>
+    <runway-section id="Runway-template--28035983671601__the_runway_wdM8BG"
+      class="rw rw--add-icon rw--popup rw--list has-dividers has-border"
+      data-feel="balanced" data-blur="true" data-mblur="true" data-style="ring" data-mstyle="classic"
+      data-fit="true" data-height-mode="original" data-height-vh="100" data-mheight-mode="custom"
+      data-mheight-vh="109" data-reflect="false" data-autoplay="true" data-speed="5000"
+      data-after-add="stay" data-bundle-code="" data-msg-choose="Pick a size for: [items]"
+      data-msg-error="Couldn’t add to bag. Please try again." data-msg-soldout="Sold out">
+      <div class="rw__sticky">
+        <div class="rw__grid">
+          <section class="rw__left" aria-label="Runway look carousel">
+            <div class="rw__head">
+              <div class="rw__intro">
+                <h1 class="rw__title">Try the Look.</h1>
+                <p class="rw__sub">Six looks, styled head to toe. Tap a pin to see the piece.</p>
+              </div>
+              <span class="rw__sr" aria-live="polite" aria-atomic="true" data-rw-live></span>
+            </div>
+            <div class="rw__stage" data-rw-stage tabindex="0" role="region" aria-roledescription="carousel" aria-label="Try the Look. — use arrow keys or swipe to change look">
+              <div class="rw__actors" data-rw-actors></div>
+              <div class="rw__heroes" data-rw-heroes></div>
+              <span class="rw__sweep" aria-hidden="true"></span>
+              <span class="rw__cursor" data-rw-cursor aria-hidden="true"><span class="rw__cursor-in"><span class="rw__cursor-label rw__cursor-drag">Drag</span><span class="rw__cursor-label rw__cursor-view">View</span></span></span>
+              <span class="rw__walk" aria-hidden="true"><span class="rw__walk-line"></span></span>
+            </div>
+            <div class="rw__controls">
+              <button class="rw__icon" data-rw-prev aria-label="Previous look"><svg viewBox="0 0 26 14" width="26" height="14" aria-hidden="true"><path d="M25 7H1M7 1L1 7l6 6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              <div class="rw__ticks" data-rw-ticks></div>
+              <button class="rw__icon rw__auto" data-rw-auto aria-pressed="false" aria-label="Autoplay"><svg class="icon-play" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M7 4.5v15l12.5-7.5z"/></svg><svg class="icon-pause" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M6.5 4.5h3.5v15H6.5zM14 4.5h3.5v15H14z"/></svg></button>
+              <button class="rw__icon" data-rw-next aria-label="Next look"><svg viewBox="0 0 26 14" width="26" height="14" aria-hidden="true"><path d="M1 7h24M19 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
+            <div class="rw__lb" data-rw-popup hidden></div>
+          </section>
+          <aside class="rw__panel has-rule">
+            <div class="rw__panel-inner">
+              <div class="rw__panel-head"><h2 class="rw__panel-title">In this look</h2><span class="rw__label" data-rw-pieces>3 pieces</span></div>
+              <div class="rw__panels" data-rw-panels></div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </runway-section>
+  </main>
+  <dialog id="bag-dialog" class="bag-dialog">
+    <div class="bag-head"><div><span class="bag-kicker">YOUR EDIT</span><h2>Styling bag</h2></div><button type="button" data-close-bag aria-label="Close styling bag">×</button></div>
+    <div class="bag-content" data-bag-items><p class="bag-empty">Your styling bag is empty.</p></div>
+    <div class="bag-foot"><div><span>Subtotal</span><strong data-bag-total>$0.00</strong></div><p>Items are saved locally for this browser.</p></div>
+  </dialog>
+  <div id="bag-status" role="status" aria-live="polite"></div>
+</body>
+</html>
