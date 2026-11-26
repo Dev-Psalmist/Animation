@@ -29,7 +29,10 @@
     {name:'Studio Day',image:'model-3-640.webp',original:'original-look-3.webp',desc:'Burgundy layers. A tailored perspective.',items:['sweatshirt','tatum-5-orbit','tshirt'],pins:[[50,28],[48,58],[45,88]]},
     {name:'Studio Day',image:'model-2-640.webp',original:'original-look-2.webp',desc:'A grey crew and your favourite denim.',items:['hoodie','air-jordan-12-retro-copy','tshirt'],pins:[[50,28],[48,58],[45,88]]}
   ];
-  const money = n => '$'+n.toFixed(2);
+  // Display-only conversion based on the CBN reference rate for 26 Nov 2026.
+  // Shopify remains the source of truth for checkout currency and final charges.
+  const USD_TO_NGN = 1387.3883;
+  const money = n => new Intl.NumberFormat('en-NG',{style:'currency',currency:'NGN',maximumFractionDigits:0}).format(Math.round(n*USD_TO_NGN));
   const section = document.querySelector('runway-section');
   if (!section) return;
 
@@ -67,7 +70,8 @@
         const tick = document.createElement('button'); tick.className='rw__tick'; tick.dataset.rwTick=i; tick.setAttribute('aria-current','false'); tick.setAttribute('aria-label','Look '+(i+1)+': '+look.name);
         tick.innerHTML='<span class="rw__tick-bar"></span><span class="rw__tick-label">0'+(i+1)+'<span class="rw__tick-name">&nbsp;&nbsp;'+look.name+'</span></span>'; this.ticks.append(tick);
         const panel = document.createElement('div'); panel.className='rw__look-panel'; panel.dataset.rwPanel=i; panel.hidden=i!==0;
-        panel.innerHTML='<div class="rw__mhead"><span class="rw__mhead-title">'+look.name+'</span><span class="rw__label">3 pieces</span></div><ul class="rw__items" role="list">'+look.items.map((id,n)=>this.productRow(id,n,look)).join('')+'</ul><div class="rw__bundle"><h3 class="rw__bundle-title">Complete the look</h3><p class="rw__bundle-note">Bundle all 3 and save 10%</p><div class="rw__bundle-prices"><s>$547.00</s><strong>$492.30</strong></div><button class="rw__bundle-cta" data-add-full>Add full look — $492.30</button></div><template data-rw-pieces-text>3 pieces</template>';
+        const lookSubtotal=look.items.reduce((sum,id)=>sum+products[id].price,0),lookDiscount=lookSubtotal*.9;
+        panel.innerHTML='<div class="rw__mhead"><span class="rw__mhead-title">'+look.name+'</span><span class="rw__label">3 pieces</span></div><ul class="rw__items" role="list">'+look.items.map((id,n)=>this.productRow(id,n,look)).join('')+'</ul><div class="rw__bundle"><h3 class="rw__bundle-title">Complete the look</h3><p class="rw__bundle-note">Bundle all 3 and save 10%</p><div class="rw__bundle-prices"><s>'+money(lookSubtotal)+'</s><strong>'+money(lookDiscount)+'</strong></div><button class="rw__bundle-cta" data-add-full>Add full look — '+money(lookDiscount)+'</button></div><template data-rw-pieces-text>3 pieces</template>
         this.panels.append(panel);
         const img = hero.querySelector('img'); this.decodeImage(img);
       });
@@ -175,7 +179,7 @@
   }
   document.getElementById('open-bag').addEventListener('click',()=>{renderBag();bagDialog.showModal()});
   document.querySelector('[data-close-bag]').addEventListener('click',()=>bagDialog.close());
-  document.querySelector('[data-export-bag]').addEventListener('click',()=>{const bag=JSON.parse(localStorage.getItem('runway-styling-bag-v3')||'[]');if(!bag.length)return;const lines=['RUNWAY — STYLING SHORTLIST','Reference prices; no order or payment has been placed.','',...bag.flatMap(p=>[p.name+' · Size '+p.size+' · Quantity '+(p.quantity||1),p.url])];const blob=new Blob([lines.join('\n')],{type:'text/plain;charset=utf-8'}),url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download='runway-outfit-shortlist.txt';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000)});
+  document.querySelector('[data-export-bag]').addEventListener('click',()=>{const bag=JSON.parse(localStorage.getItem('runway-styling-bag-v3')||'[]');if(!bag.length)return;const lines=['RUNWAY — STYLING SHORTLIST','Estimated NGN reference prices; no order or payment has been placed.','',...bag.flatMap(p=>[p.name+' · Size '+p.size+' · Quantity '+(p.quantity||1),p.url])];const blob=new Blob([lines.join('\n')],{type:'text/plain;charset=utf-8'}),url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download='runway-outfit-shortlist.txt';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000)});
   document.querySelector('[data-bag-items]').addEventListener('click',e=>{const b=e.target.closest('[data-remove-bag]');if(!b)return;const bag=JSON.parse(localStorage.getItem('runway-styling-bag-v3')||'[]');bag.splice(Number(b.dataset.removeBag),1);localStorage.setItem('runway-styling-bag-v3',JSON.stringify(bag));renderBag()});
   renderBag();
 })();
