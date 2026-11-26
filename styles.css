@@ -17,3 +17,32 @@ runway-section{display:block;position:relative;color:var(--rw-c-text);background
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 
 .bag-export{width:100%;margin-top:18px;padding:15px 18px;border:0;background:#151413;color:#fff;font-size:12px}.bag-export:disabled{opacity:.4;cursor:not-allowed}.rw__confirm{flex:1 0 100%;min-height:42px;border:0;background:#151413;color:#fff;padding:0 16px;font-size:11px}.rw__picker{grid-column:1/-1;padding-top:14px}.rw__item.is-hot{background:linear-gradient(90deg,rgba(21,20,19,.035),transparent)}
+/* Stage 2 visual direction: monochrome black runway with high-contrast white UI. */
+:root{color-scheme:dark;--rw-c-stage:#050505;--rw-c-panel:#050505;--rw-c-text:#f5f5f5;--rw-c-muted:#b8b8b8;--rw-c-accent:#fff;--rw-c-line:#343434}
+html,body{background:#050505!important;color:#f5f5f5!important}
+.site-header{background:#050505!important;color:#fff!important;border-bottom:1px solid #292929!important}
+.brand img{filter:invert(1) grayscale(1)}
+.site-header nav a,.bag-trigger{color:#fff!important}
+.rw__left,.rw__panel,runway-section{background:#050505!important;color:#f5f5f5!important}
+.rw__title,.rw__panel-title,.rw__bundle-title,.rw__name,.rw__price,.rw__info,.rw__controls,.rw__icon{color:#f5f5f5!important}
+.rw__sub,.rw__label,.rw__type,.rw__bundle-note,.rw__tick{color:#b8b8b8!important}
+.rw__panel,.rw__item,.rw__item:last-child,.rw__bundle{border-color:#343434!important}
+.rw__media{background:#111!important}
+.rw__num,.rw__pin-dot{background:#050505!important;color:#fff!important;border:1px solid #777}
+.rw__tick-bar{background:rgba(255,255,255,.2)!important}
+.rw__tick-bar:after,.rw__walk-line{background:#fff!important}
+.rw__tick[aria-current=true]{color:#fff!important}
+.rw__icon:before{border-color:#fff!important}
+.rw__cursor-in{background:#fff!important;color:#050505!important}
+.rw__tag-text{background:#fff!important;color:#050505!important}
+.rw__picker button{background:#080808!important;color:#fff!important;border-color:#555!important}
+.rw__picker button[aria-pressed=true],.rw__bundle-cta,.rw__confirm,.bag-export{background:#fff!important;color:#050505!important;border-color:#fff!important}
+.rw__lb{background:rgba(0,0,0,.97)!important}
+.rw__lb-close{background:#050505!important;color:#fff!important;border-color:#555!important}
+.bag-dialog{background:#080808!important;color:#fff!important;border:1px solid #3a3a3a!important}
+.bag-dialog::backdrop{background:rgba(0,0,0,.78)!important}
+.bag-head,.bag-foot,.bag-row{border-color:#333!important}
+.bag-empty,.bag-foot p{color:#b8b8b8!important}
+.bag-head button,.bag-row button{background:transparent!important;color:#fff!important;border:0}
+#bag-status{background:#fff!important;color:#050505!important}
+button:focus-visible,a:focus-visible,.rw__stage:focus-visible{outline-color:#fff!important}
