@@ -169,9 +169,9 @@
   const bagDialog=document.getElementById('bag-dialog');
   function renderBag(){
     const bag=JSON.parse(localStorage.getItem('runway-styling-bag-v3')||'[]');
-    document.querySelectorAll('[data-cart-count]').forEach(el=>el.textContent=bag.length);
+    document.querySelectorAll('[data-cart-count]').forEach(el=>el.textContent=bag.reduce((total,item)=>total+(item.quantity||1),0));
     document.querySelector('[data-bag-items]').innerHTML=bag.length?bag.map((p,i)=>'<div class="bag-row"><img src="'+BASE+p.image+'" alt="'+p.name+'"><div><strong>'+p.name+'</strong><br>Size '+p.size+' · Quantity '+(p.quantity||1)+' · '+money(p.price*(p.quantity||1))+'<br><a href="'+p.url+'" target="_blank" rel="noopener noreferrer">View original piece ↗</a></div><button data-remove-bag="'+i+'" aria-label="Remove '+p.name+'">×</button></div>').join(''):'<p class="bag-empty">Your styling bag is empty.</p>';
-    document.querySelector('[data-bag-total]').textContent='Reference subtotal '+money(bag.reduce((sum,p)=>sum+p.price*(p.quantity||1),0));
+    document.querySelector('[data-bag-total]').textContent='Reference subtotal '+money(bag.reduce((sum,p)=>sum+p.price*(p.quantity||1),0));const exportButton=document.querySelector('[data-export-bag]');if(exportButton)exportButton.disabled=!bag.length;
   }
   document.getElementById('open-bag').addEventListener('click',()=>{renderBag();bagDialog.showModal()});
   document.querySelector('[data-close-bag]').addEventListener('click',()=>bagDialog.close());
