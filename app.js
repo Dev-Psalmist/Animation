@@ -12,14 +12,14 @@
     'hoodie-black': ['56836251681073','56836251713841','56836251746609','56836251779377']
   };
   const products = {
-    'tatum-5-orbit-copy': {name:'Air Jordan 12 Retro',vendor:'Nikey | Password: 1',price:149,image:'source-tatum-5-orbit-copy.webp',sizes:['40','41','42','43','44','45','46'],url:SHOP+'/products/tatum-5-orbit-copy',shoe:true},
-    tshirt:{name:'Tshirt',vendor:'Nike',price:199,image:'source-tshirt.webp',sizes:['S','L','M','XL'],url:SHOP+'/products/tshirt'},
-    sweatshirt:{name:'Sweatshirt',vendor:'Nike',price:199,image:'source-sweatshirt.webp',sizes:['S','L','M','XL'],url:SHOP+'/products/sweatshirt'},
-    'tatum-5-orbit':{name:'Tatum 5 Orbit',vendor:'Nikey | Password: 1',price:149,image:'source-tatum-5-orbit.webp',sizes:['40','41','42','43','44','45','46'],url:SHOP+'/products/tatum-5-orbit',shoe:true},
-    'hoodie-black':{name:'Hoodie Black',vendor:'Nike',price:199,image:'source-hoodie-black.webp',sizes:['S','L','M','XL'],url:SHOP+'/products/hoodie-black'},
-    'sweatshirt-plus':{name:'Sweatshirt Plus',vendor:'Nike',price:199,image:'source-sweatshirt-plus.webp',sizes:['S','L','M','XL'],url:SHOP+'/products/sweatshirt-plus'},
-    hoodie:{name:'Hoodie',vendor:'Nike',price:199,image:'source-hoodie.webp',sizes:['S','L','M','XL'],url:SHOP+'/products/hoodie'},
-    'air-jordan-12-retro-copy':{name:'Luka 5',vendor:'Nikey | Password: 1',price:149,image:'source-air-jordan-12-retro-copy.webp',sizes:['40','41','42','43','44','45','46'],url:SHOP+'/products/air-jordan-12-retro-copy',shoe:true}
+    'tatum-5-orbit-copy': {name:'Air Jordan 12 Retro',vendor:'OG Stores',price:149,image:'source-tatum-5-orbit-copy.webp',sizes:['40','41','42','43','44','45','46'],url:SHOP+'/products/tatum-5-orbit-copy',shoe:true},
+    tshirt:{name:'Tshirt',vendor:'OG Stores',price:199,image:'source-tshirt.webp',sizes:['S','L','M','XL'],url:SHOP+'/products/tshirt'},
+    sweatshirt:{name:'Sweatshirt',vendor:'OG Stores',price:199,image:'source-sweatshirt.webp',sizes:['S','L','M','XL'],url:SHOP+'/products/sweatshirt'},
+    'tatum-5-orbit':{name:'Tatum 5 Orbit',vendor:'OG Stores',price:149,image:'source-tatum-5-orbit.webp',sizes:['40','41','42','43','44','45','46'],url:SHOP+'/products/tatum-5-orbit',shoe:true},
+    'hoodie-black':{name:'Hoodie Black',vendor:'OG Stores',price:199,image:'source-hoodie-black.webp',sizes:['S','L','M','XL'],url:SHOP+'/products/hoodie-black'},
+    'sweatshirt-plus':{name:'Sweatshirt Plus',vendor:'OG Stores',price:199,image:'source-sweatshirt-plus.webp',sizes:['S','L','M','XL'],url:SHOP+'/products/sweatshirt-plus'},
+    hoodie:{name:'Hoodie',vendor:'OG Stores',price:199,image:'source-hoodie.webp',sizes:['S','L','M','XL'],url:SHOP+'/products/hoodie'},
+    'air-jordan-12-retro-copy':{name:'Luka 5',vendor:'OG Stores',price:149,image:'source-air-jordan-12-retro-copy.webp',sizes:['40','41','42','43','44','45','46'],url:SHOP+'/products/air-jordan-12-retro-copy',shoe:true}
   };
   const looks = [
     {name:'The City Edit',image:'model-1-640.webp',original:'original-look-1.webp',desc:'A charcoal knit and easy denim.',items:['tatum-5-orbit-copy','tshirt','sweatshirt'],pins:[[47,27],[48,58],[45,96]]},
@@ -33,6 +33,8 @@
   // Shopify remains the source of truth for checkout currency and final charges.
   const USD_TO_NGN = 1387.3883;
   const money = n => new Intl.NumberFormat('en-NG',{style:'currency',currency:'NGN',maximumFractionDigits:0}).format(Math.round(n*USD_TO_NGN));
+  const yearLabel = document.getElementById('current-year');
+  if (yearLabel) yearLabel.textContent = new Date().getFullYear();
   const section = document.querySelector('runway-section');
   if (!section) return;
 
